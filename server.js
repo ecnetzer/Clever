@@ -106,10 +106,7 @@ app.get('/oauth2', function(req, res){
                 'headers' : {
                     'Authorization': 'Bearer ' + token
                 }
-            }
-            console.log('/me request shit')
-            console.log(ME_REQ_PARAMS)
-
+            };
             res.render('triggerMeReq', {
                 'title': token
             });
