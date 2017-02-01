@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bell Schedule</title>
     <style type="text/css">
-    
+
     body {
         width: 100%;
         height: 100%;
         font-family: Helvetica, Arial, Sans-Serif;
     }
     #main {
-        position:absolute; 
+        position:absolute;
         height:100%; width:100%;
         display: table;
         top: 30%;
     }
-    h1 {        
+    h1 {
         vertical-align: middle;
         text-align:center;
         font-size: 36pt;
@@ -23,10 +22,10 @@
     .centered {
         margin: 0 auto;
         text-align: left;
-        width: 800px;
+        width: 1500px;
     }
-    
-    
+
+
     </style>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -34,16 +33,24 @@
 <body>
     <div id="main" class="centered">
         <div class="centered">
-            <p>
-                The first step to implementing instant login is to generate an Instant Login link.  In order to do that it's important to understand a few things...
-            </p>
-            <p>
-                Clever uses an OAuth2.0 authorization flow to negotiate the sign in process.
-            </p>
-            <p>
-                Clever uses basic auth to ensure that only registered applications are allowed to integrate with the Clever ecosystem.
-                When you sign up for your developer account, Clever will issue you a client_id and client_secret which act as public and private keys for basic auth.
-            </p>
+            <h3>
+                The first step to implementing instant login is to generate an Instant Login link.
+                This link redirects the user to a Clever login page so they can log in with their Clever username and password.
+                The link includes the ‘client_id’ (as a query parameter) supplied to me in the developer portal so that Clever
+                can authenticate my application. It also includes a ‘redirect_uri’ (as a query parameter), that I defined in
+                Clever’s developer portal, so that Clever knows where to go once the user has logged in. Lastly, it includes
+                the ‘response_type’ (as a query parameter) which I set equal to ‘code’, so Clever knows that I am not using an
+                implicit grant flow.
+            </h3>
+            <h3>
+                Once you click this link you (the user) can then authorize and authenticate yourself through Clever.
+                It’s important to note that you dp not share your Clever login username or password with my app,
+                you only share that information with Clever.  Clever handles all of the security details for you so I as an
+                application developer don’t have to.
+            </h3>
+            <br/><br/>
+            <h3>The link looks like:</h3>
+            <h3>https://clever.com/oauth/authorize?response_type=code&redirect_uri=http://192.168.1.66:5000/oauth&client_id=0d31f9095c85302f8fc7</h3>
             <br/><br/>
             <a href='https://clever.com/oauth/authorize?response_type=code&redirect_uri={{redirect_uri}}&client_id={{client_id}}'><img src='/images/signinwithclever.png'/></a>
         </div>

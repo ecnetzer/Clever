@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Me!</title>
-</head>
 <body>
 <div id="main" class="centered">
-    <h3>Code: {{code}}</h3>
-    <br></br>
-    <h1>Request Info:</h1>
+    <h3>The user has now been authorized and authenticated through Clever and redirected to this page with an attached
+        query parameter called 'code'.  If you look in the url for this page you should see it (code={{code}}).  This
+        parameter is a short-lived credential that can be exchanged with Clever for an access_token.  Below are the details
+        of the request for this exchange.  Click the 'Trigger Request' button to trigger this exchange.
+    </h3>
+    <h1>Request Details:</h1>
     <h3>URL: {{request_url}}</h3>
     <h3>Method: {{request_method}}</h3>
     <h3>Body: <pre><code>{{request_body}}</code></pre></h3>
