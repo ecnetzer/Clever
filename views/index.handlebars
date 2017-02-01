@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-    <div id="main" class="centered">
-        <div class="centered">
-            <h3>
-                The first step to implementing instant login is to generate an Instant Login link.
-                This link redirects the user to a Clever login page so they can log in with their Clever username and password.
-                The link includes the ‘client_id’ (as a query parameter) supplied to me in the developer portal so that Clever
-                can authenticate my application. It also includes a ‘redirect_uri’ (as a query parameter), that I defined in
-                Clever’s developer portal, so that Clever knows where to go once the user has logged in. Lastly, it includes
-                the ‘response_type’ (as a query parameter) which I set equal to ‘code’, so Clever knows that I am not using an
-                implicit grant flow.
-            </h3>
-            <h3>
-                Once you click this link you (the user) can then authorize and authenticate yourself through Clever.
-                It’s important to note that you dp not share your Clever login username or password with my app,
-                you only share that information with Clever.  Clever handles all of the security details for you so I as an
-                application developer don’t have to.
-            </h3>
-            <br/><br/>
-            <h3>The link looks like:</h3>
-            <h3>https://clever.com/oauth/authorize?response_type=code&redirect_uri=http://192.168.1.66:5000/oauth&client_id=0d31f9095c85302f8fc7</h3>
-            <br/><br/>
-            <a href='https://clever.com/oauth/authorize?response_type=code&redirect_uri={{redirect_uri}}&client_id={{client_id}}'><img src='/images/signinwithclever.png'/></a>
-        </div>
+    <div>
+        <h3>
+            The first step to implementing instant login is to generate an Instant Login link.
+            This link redirects the user to a Clever login page so they can log in with their Clever username and password.
+            The link includes the ‘client_id’ (as a query parameter) supplied to me in the developer portal so that Clever
+            can authenticate my application. It also includes a ‘redirect_uri’ (as a query parameter), that I defined in
+            Clever’s developer portal, so that Clever knows where to go once the user has logged in. Lastly, it includes
+            the ‘response_type’ (as a query parameter) which I set equal to ‘code’, to let Clever know I am looking for
+            a response code (and not a response token which is used for implicit grant flow).
+        </h3>
+        <h3>
+            Once you click this link you can then authorize and authenticate yourself through Clever.
+            It’s important to note that you do not share your Clever login username or password with my app,
+            you only share that information with Clever.  Clever handles all of the security details for you so I as an
+            application developer don’t have to.
+        </h3>
+        <br/><br/>
+        <h3>The link looks like:</h3>
+        <h3>https://clever.com/oauth/authorize?response_type=code&redirect_uri=http://192.168.1.66:5000/oauth&client_id=0d31f9095c85302f8fc7</h3>
+        <br/><br/>
+        <a href='https://clever.com/oauth/authorize?response_type=code&redirect_uri={{redirect_uri}}&client_id={{client_id}}'><img src='/images/signinwithclever.png'/></a>
     </div>
 </body>
 </html>
