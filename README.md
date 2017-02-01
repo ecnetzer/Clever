@@ -1,5 +1,3 @@
-# Bell Schedule - A simple demo of the Login With Clever button. 
-
 ## To install:
 `npm install`
 
