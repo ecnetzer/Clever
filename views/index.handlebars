@@ -33,17 +33,19 @@
 </head>
 <body>
     <div id="main" class="centered">
-        
-        <h1>Welcome to Bell Schedule<br/><br/><a href='https://clever.com/oauth/authorize?response_type=code&redirect_uri={{redirect_uri}}&client_id={{client_id}}'><img src='/images/signinwithclever.png'/></a>
-            
-        </h1>
-        <br/><br/>
         <div class="centered">
-            <ol>     
-                <li>Click the Login With Clever button.</li>
-                <li>Paste district ID <code>544982fbc7da940010000036</code> into the District picker to select a demo district.</li>
-                <li>Use username <code>aaronm38</code> and password <code>dah6eeVeuj</code> to log in.</li>
-            </ol>
+            <p>
+                The first step to implementing instant login is to generate an Instant Login link.  In order to do that it's important to understand a few things...
+            </p>
+            <p>
+                Clever uses an OAuth2.0 authorization flow to negotiate the sign in process.
+            </p>
+            <p>
+                Clever uses basic auth to ensure that only registered applications are allowed to integrate with the Clever ecosystem.
+                When you sign up for your developer account, Clever will issue you a client_id and client_secret which act as public and private keys for basic auth.
+            </p>
+            <br/><br/>
+            <a href='https://clever.com/oauth/authorize?response_type=code&redirect_uri={{redirect_uri}}&client_id={{client_id}}'><img src='/images/signinwithclever.png'/></a>
         </div>
     </div>
 </body>

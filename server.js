@@ -30,7 +30,7 @@ var ME_REQ_PARAMS
  */
 var app = express();
 app.use(serveStatic(__dirname + '/public'));
-app.engine('handlebars', expressHbs());
+app.engine('handlebars', expressHbs({helpers: { json: function (context) { return JSON.stringify(context);}}}));
 app.set('view engine', 'handlebars');
 app.use(session({secret: 'somekindasecret'}));
 //
@@ -88,15 +88,19 @@ app.get('/oauth', function(req, res){
             'headers' : {
                 'Authorization': 'Basic ' + new Buffer(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64')
             }
-        }
+        };
 
         res.render('redirect', {
-            'title': req.query.code
+            'code': JSON.stringify(req.query.code, null, 2),
+            'request_url': JSON.stringify(OAUTH_TOKEN_REQ_PARAMS.url, null, 2),
+            'request_method': JSON.stringify(OAUTH_TOKEN_REQ_PARAMS.method, null, 2),
+            'request_body': JSON.stringify(body, null, 2),
+            'request_headers': JSON.stringify(OAUTH_TOKEN_REQ_PARAMS.headers, null, 2),
         });
     }
 });
 
-app.get('/oauth2', function(req, res){
+app.get('/oauth_step2', function(req, res){
     makeRequest(OAUTH_TOKEN_REQ_PARAMS, function(err, result){
         if(!err){
             var token = result['access_token'];
@@ -107,8 +111,11 @@ app.get('/oauth2', function(req, res){
                     'Authorization': 'Bearer ' + token
                 }
             };
-            res.render('triggerMeReq', {
-                'title': token
+            res.render('oauth_step2', {
+                'response': JSON.stringify(result, null,2),
+                'request_url': JSON.stringify(ME_REQ_PARAMS.url, null,2),
+                'request_method': JSON.stringify(ME_REQ_PARAMS.method, null,2),
+                'request_headers': JSON.stringify(ME_REQ_PARAMS.headers, null,2)
             });
         }else{
             console.error('Something broke: ' + err);
@@ -117,11 +124,11 @@ app.get('/oauth2', function(req, res){
     });
 });
 
-app.get('/oauth3', function(req, res){
+app.get('/me', function(req, res){
     makeRequest(ME_REQ_PARAMS, function(err, result){
         if(!err){
             res.render('me', {
-                'me': JSON.stringify(result)
+                'response': JSON.stringify(result, null,2)
             });
         }else{
             console.error('Something broke: ' + err);
