@@ -21,7 +21,6 @@ var CLIENT_SECRET = process.env.CLIENT_SECRET;
 var API_PREFIX = 'https://api.clever.com'
 var OAUTH_TOKEN_URL = 'https://clever.com/oauth/tokens'
 
-//***********STORE THESE IN SESSION VARIBLES????????
 var OAUTH_TOKEN_REQ_PARAMS ={}
 var ME_REQ_PARAMS
 
